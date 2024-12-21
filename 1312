@@ -3,8 +3,7 @@ EXTINF:-1,Yo Yo Honey Singh Famous 2024.mpeg
 https://firebasestorage.googleapis.com/v0/b/ip-tv-1312.appspot.com/o/Yo%20Yo%20Honey%20Singh%20Famous%202024.mpeg?alt=media&token=8cedda45-c4a7-4488-9e25-a040affa5b46
 #EXTINF:-1,Taaza Khabar
 https://firebasestorage.googleapis.com/v0/b/ip-tv-1312.appspot.com/o/Taaza%20Khabar%20S02%2FTaaza%20Khabar.m3u8?alt=media&token=5b8e097e-54a3-42e2-bee7-4b21f4c35b78
-#EXTINF:-1,Kraven the Hunter 2024.mkv
-#EXTIMG:https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYx8E50ah6AIhNgK_QT_Ccwxq8_a9dKQGsh2llM3uIB1DxvxQRCoqdYH8&s=10
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYx8E50ah6AIhNgK_QT_Ccwxq8_a9dKQGsh2llM3uIB1DxvxQRCoqdYH8&s=10",Kraven the Hunter 2024.mkv
 https://firebasestorage.googleapis.com/v0/b/ip-tv-1312.appspot.com/o/Kraven%20the%20Hunter%202024.mkv?alt=media&token=16333313-daf8-4256-a2b8-68269d35a465
 #EXTINF:-1,Sanju 2018.mkv
 https://firebasestorage.googleapis.com/v0/b/ip-tv-1312.appspot.com/o/Sanju%202018.mkv?alt=media&token=6ade3a1b-e3a7-4bbb-a07d-17661ba3ddeb
