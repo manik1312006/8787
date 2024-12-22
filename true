@@ -1,5 +1,7 @@
 #EXTM3U
 
+#EXTINF:-1,Titans S01
+https://firebasestorage.googleapis.com/v0/b/ip-tv-1312.appspot.com/o/TITANS%2FS01%2FTITANS%20S01.m3u8?alt=media&token=062d6227-a5a4-4477-887d-c8df674aabfe
 #EXTINF:-1, The Wolf Of Wall Street 2013.mkv
 https://firebasestorage.googleapis.com/v0/b/ip-tv-1312.appspot.com/o/The%20Wolf%20of%20Wall%20Street%202013.mkv?alt=media&token=03f0e260-2acd-4362-ac3b-9efffda745ac
 #EXTINF:-1,The Crow 2024.mkv
