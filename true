@@ -1,5 +1,7 @@
 #EXTM3U
 
+#EXTINF:-1,TITANS S02
+https://firebasestorage.googleapis.com/v0/b/ip-tv-1312.appspot.com/o/TITANS%2FS02%2FTITANS%20S02.m3u8?alt=media&token=b305c196-2c50-495f-8028-6a1dbea01cda
 #EXTINF:-1,Agatha All Along S01
 https://firebasestorage.googleapis.com/v0/b/ip-tv-1312.appspot.com/o/Agatha%20All%20Along%2FS01%2FAgatha%20All%20Along%20S01.m3u8?alt=media&token=a2f7bf9b-1503-4871-a876-f97bab25cf3b
 #EXTINF:-1,Titans S01
