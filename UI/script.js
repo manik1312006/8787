@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             title: "LOVE AND OTHER DRUGS 2010",
             imageUrl: "",
-            link: "vlc://https://firebasestorage.googleapis.com/v0/b/ip-tv-1312.appspot.com/o/Love%20and%20Other%20Drugs%202010.mkv?alt=media&token=51bfade2-52c6-47f6-8405-67e2bc6ffdd3"
+            link: "vlc://http://firebasestorage.googleapis.com/v0/b/ip-tv-1312.appspot.com/o/Love%20and%20Other%20Drugs%202010.mkv?alt=media&token=51bfade2-52c6-47f6-8405-67e2bc6ffdd3"
           },
           {
             title: "TITANS S03",
