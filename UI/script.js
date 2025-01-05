@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
         parentDiv.className = 'parent';
         parentDiv.innerHTML = `
             <div class="ch">
-                <a href="${"vlc://https://"+movie.link}">
+                <a href="${"vlc://"+movie.link}">
                     <img src="${movie.imageUrl}" class="img" alt="${movie.title}">
                     <span>${movie.title}</span>
                 </a>
