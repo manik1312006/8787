@@ -100,7 +100,7 @@ marquee{
 }
 }
 
-@media screen and (max-width: 300px){
+@media screen and (max-width: 400px){
     marquee{
         display: none;
     }
