@@ -92,12 +92,72 @@ marquee{
     z-index: -1;
 }
 
-@media screen and (max-width: 356px){
+#genre-filter {
+    margin-left: 10px;
+    border-radius: 5px;
+    padding: 8px;
+    border: none;
+    color: black;
+    background: linear-gradient(to top left, rgb(61, 216, 255), rgb(116, 100, 255));
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Focus effect */
+#genre-filter:focus {
+    outline: none; /* Remove default outline */
+    color: black;
+    background-color: rgb(160, 255, 226);
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem; /* Adjust as needed */
+    margin-bottom: 1rem;
+
+}
+
+
+.pagination button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(to top left, rgb(61, 216, 255), rgb(116, 100, 255));
+    font-weight: bold;
+    cursor: pointer;
+    margin: 0 0.5rem; /* Adjust as needed */
+
+}
+
+.pagination button:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+
+#page-number {
+    margin: 0 1rem; /* Space around the page number */
+
+}
+
+@media screen and (max-width: 500px){
     .search-bar{
     #logo{
         display: none;
     }
 }
+}
+
+@media screen and (max-width: 400px){
+        .search-bar{
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
 }
 
 @media screen and (max-width: 480px){

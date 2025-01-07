@@ -18,11 +18,21 @@
             </marquee>
         </div>
         <input type="search" id="search-bar" placeholder="Search Here.....">
+        <select id="genre-filter">
+            <option value=""><p>All Genres</p></option> <!-- Default option -->
+        </select>
+    </div>
+    
+    <div id="movie-container"></div>
+
+    <hr>
+
+    <div class="pagination">
+        <button id="prev-page" disabled>< Previous</button>
+        <span id="page-number">Page 1</span>
+        <button id="next-page">Next ></button>
     </div>
 
-    <div id="movie-container">
-        <!-- Movie cards will be dynamically inserted here -->
-    </div>
     <script src="script.js"></script>
 </body>
 </html>
