@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://8787.netlify.app/UI/sitemap.xml

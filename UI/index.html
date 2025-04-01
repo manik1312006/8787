@@ -3,29 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="8787 - Watch and Download your favorite movies and series online">
+    <meta name="keywords" content="movies, series, streaming, entertainment, watch online, download">
+    <meta name="author" content="8787">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="8787 - Online Streaming and Downloading">
+    <meta property="og:description" content="Watch and download your favorite movies and series online">
+    <meta property="og:image" content="https://raw.githubusercontent.com/manik1312006/8787/refs/heads/main/LOGO.webp">
+    <meta property="og:url" content="https://8787.netlify.app/UI/">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://8787.netlify.app/UI/">
+    
+    <title>8787 - Watch And Download Movies & Series Online</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/manik1312006/8787/refs/heads/main/LOGO.webp" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="../LOGO.webp" type="image/x-icon">
-    <title>8787 - PLAY</title>
+    <script type="application/ld+json">
+    {
+      "@type": "WebApplication",
+      "name": "8787",
+      "applicationCategory": "Entertainment",
+      "offers": {
+        "@type": "Offer",
+        "price": "0"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "1000"
+      }
+    }
+    </script>
 </head>
 <body>
-    <div class="search-bar">
-        <img src="../LOGO.webp" alt="8787 - PLAY" id="logo">
-        <input type="search" id="search-bar" placeholder="Search Here.....">
-        <select id="genre-filter">
-            <option value=""><p>All Genres</p></option> <!-- Default option -->
-        </select>
-    </div>
-    
-    <div id="movie-container"></div>
-
-    <hr>
-
+    <header>
+        <h1>8787</h1>
+        <div class="controls">
+            <input type="text" id="search" placeholder="Search...">
+            <div class="genre-filters">
+                <button class="active" data-genre="all">All</button>
+                <button data-genre="Movies">Movies</button>
+                <button data-genre="Series">Series</button>
+            </div>
+        </div>
+    </header>
+    <main id="content"></main>
     <div class="pagination">
-        <button id="prev-page" disabled>< Previous</button>
-        <span id="page-number">Page 1</span>
-        <button id="next-page">Next ></button>
+        <button id="prevPage" disabled>Previous</button>
+        <span id="currentPage">Page 1</span>
+        <button id="nextPage">Next</button>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>

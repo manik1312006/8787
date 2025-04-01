@@ -1,105 +1,120 @@
-const movieContainer = document.getElementById('movie-container');
-const searchBar = document.getElementById('search-bar');
-const genreFilter = document.getElementById('genre-filter');
-const nextPageButton = document.getElementById('next-page');
-const prevPageButton = document.getElementById('prev-page');
-const pageNumberDisplay = document.getElementById('page-number');
+async function fetchData() {
+    try {
+        const response = await fetch('https://raw.githubusercontent.com/manik1312006/8787/refs/heads/main/index.html');
+        const text = await response.text();
+        return parseM3U8(text);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        return [];
+    }
+}
 
-let movies = [];
+function parseM3U8(content) {
+    const lines = content.split('\n');
+    const items = [];
+    
+    for (let i = 0; i < lines.length; i++) {
+        if (lines[i].includes('EXTINF:-1')) {
+            const title = lines[i].match(/,(.+)$/)?.[1] || '';
+            const link = lines[i + 1]?.trim();
+            const logo = lines[i].match(/tvg-logo="([^"]+)"/)?.[1] || '';
+            const group = lines[i].match(/group-title="([^"]+)"/)?.[1] || '';
+            
+            if (title && link) {
+                items.push({ title, link, logo, group });
+            }
+        }
+    }
+    
+    return items;
+}
+
+function createCard(item) {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+        <img src="${item.logo}" alt="${item.title}">
+        <h3>${item.title}</h3>
+    `;
+    card.addEventListener('click', () => window.open(item.link, '_blank'));
+    return card;
+}
+
+const ITEMS_PER_PAGE = 30;
 let currentPage = 1;
-const moviesPerPage = 30;
-const allGenres = new Set();
+let filteredItems = [];
 
-// Fetch movies from CSV
-fetch('data.csv')
-    .then(response => response.text())
-    .then(data => {
-        const rows = data.split('\n').slice(1); // Remove header row
-        movies = rows.map(row => {
-            const [name, url, date, genra] = row.split(',').map(item => item.replace(/"/g, '').trim());
-            const genres = genra ? genra.split(',').map(g => g.trim()) : []; // Handle cases where GENRA might be empty
-            genres.forEach(g => allGenres.add(g));
-            return { name, url, date, genres };
-        });
-
-        // Populate genre filter *after* movies are loaded
-        populateGenreFilter();
-        renderMovies(); // Render initial set of movies
-    })
-    .catch(error => console.error('Error fetching movies:', error));
-
-function populateGenreFilter() {
-    // Clear existing options (in case of re-renders)
-    genreFilter.innerHTML = '<option value="">All Genres</option>';
-
-    Array.from(allGenres).sort().forEach(genre => {
-        const option = document.createElement('option');
-        option.value = genre;
-        option.textContent = genre;
-        genreFilter.appendChild(option);
+function filterItems(items, searchText, genre) {
+    return items.filter(item => {
+        const matchesSearch = item.title.toLowerCase().includes(searchText.toLowerCase());
+        const matchesGenre = genre === 'all' || item.group === genre;
+        return matchesSearch && matchesGenre;
     });
 }
 
-function renderMovies() {
-    // Scroll to the top of the page
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+function updatePagination() {
+    const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE);
+    const prevButton = document.getElementById('prevPage');
+    const nextButton = document.getElementById('nextPage');
+    const currentPageSpan = document.getElementById('currentPage');
+
+    prevButton.disabled = currentPage === 1;
+    nextButton.disabled = currentPage === totalPages;
+    currentPageSpan.textContent = `Page ${currentPage} of ${totalPages}`;
+}
+
+function displayCurrentPage() {
+    const content = document.getElementById('content');
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    const itemsToShow = filteredItems.slice(startIndex, endIndex);
+
+    content.innerHTML = '';
+    itemsToShow.forEach(item => content.appendChild(createCard(item)));
+    updatePagination();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+async function init() {
+    const items = await fetchData();
+    const content = document.getElementById('content');
+    const search = document.getElementById('search');
+    const genreButtons = document.querySelectorAll('.genre-filters button');
+    let currentGenre = 'all';
+
+    document.getElementById('prevPage').addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            displayCurrentPage();
+        }
     });
 
-    const startIndex = (currentPage - 1) * moviesPerPage;
-    const endIndex = startIndex + moviesPerPage;
-    const moviesToRender = filterMovies().slice(startIndex, endIndex);
+    document.getElementById('nextPage').addEventListener('click', () => {
+        const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE);
+        if (currentPage < totalPages) {
+            currentPage++;
+            displayCurrentPage();
+        }
+    });
 
-    if (moviesToRender.length === 0 && currentPage > 1) {
-        currentPage--;
-        renderMovies();
-        return;
+    function updateDisplay() {
+        currentPage = 1; // Reset to first page when filtering
+        filteredItems = filterItems(items, search.value, currentGenre);
+        displayCurrentPage();
     }
 
-    movieContainer.innerHTML = '';
-    moviesToRender.forEach(movie => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-            <a href="${movie.url}">
-                <div class="movie-title">${movie.name}</div>
-            </a>
-        `;
-        movieContainer.appendChild(card);
+    search.addEventListener('input', updateDisplay);
+
+    genreButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            genreButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            currentGenre = button.dataset.genre;
+            updateDisplay();
+        });
     });
 
-    // Update pagination controls
-    prevPageButton.disabled = currentPage === 1;
-    nextPageButton.style.display = endIndex < filterMovies().length ? 'inline-block' : 'none'; // or 'block' if needed
-    pageNumberDisplay.textContent = `Page ${currentPage}`;
+    updateDisplay();
 }
 
-searchBar.addEventListener('input', () => {
-    currentPage = 1;
-    renderMovies();
-});
-
-genreFilter.addEventListener('change', () => {
-    currentPage = 1;
-    renderMovies();
-});
-
-nextPageButton.addEventListener('click', () => {
-    currentPage++;
-    renderMovies();
-});
-
-prevPageButton.addEventListener('click', () => {
-    currentPage--;
-    renderMovies();
-});
-
-function filterMovies() {
-    const searchTerm = searchBar.value.toLowerCase();
-    const selectedGenre = genreFilter.value;
-
-    return movies.filter(movie =>
-        movie.name.toLowerCase().includes(searchTerm) && (selectedGenre === "" || movie.genres.includes(selectedGenre))
-    );
-}
+init();

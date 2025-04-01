@@ -1,0 +1,17 @@
+{
+  "name": "8787 Streaming",
+  "short_name": "8787",
+  "description": "Watch And Download Your Favorite Movies And Series Online For Free",
+  "version": "1.0",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f1729",
+  "theme_color": "#4f9cff",
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/manik1312006/8787/refs/heads/main/LOGO.webp",
+      "sizes": "192x192",
+      "type": "image/webp"
+    }
+  ]
+}
