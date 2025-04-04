@@ -36,9 +36,52 @@ function createCard(item) {
         <img src="${item.logo}" alt="${item.title}">
         <h3>${item.title}</h3>
     `;
-    card.addEventListener('click', () => window.open(item.link, '_blank'));
+    card.addEventListener('click', () => showPopup(item));
     return card;
 }
+
+function showPopup(item) {
+    const popup = document.getElementById('linkPopup');
+    const overlay = document.querySelector('.popup-overlay');
+    const copyBtn = document.getElementById('copyLink');
+    const downloadBtn = document.getElementById('downloadFile');
+
+    popup.style.display = 'block';
+    overlay.style.display = 'block';
+
+    copyBtn.onclick = async () => {
+        try {
+            await navigator.clipboard.writeText(item.link);
+            copyBtn.textContent = 'Copied!';
+            setTimeout(() => {
+                copyBtn.textContent = 'Copy Link';
+                closePopup();
+            }, 1500);
+        } catch (err) {
+            console.error('Failed to copy:', err);
+        }
+    };
+
+    downloadBtn.onclick = () => {
+        window.open(item.link, '_blank');
+        closePopup();
+    };
+
+    overlay.onclick = closePopup;
+}
+
+function closePopup() {
+    const popup = document.getElementById('linkPopup');
+    const overlay = document.querySelector('.popup-overlay');
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closePopup();
+    }
+});
 
 const ITEMS_PER_PAGE = 30;
 let currentPage = 1;

@@ -1,5 +1,5 @@
 {
-  "name": "8787 Streaming",
+  "name": "8787 - Stream & Download Movies",
   "short_name": "8787",
   "description": "Watch And Download Your Favorite Movies And Series Online For Free",
   "version": "1.0",
@@ -7,11 +7,41 @@
   "display": "standalone",
   "background_color": "#0f1729",
   "theme_color": "#4f9cff",
+  "orientation": "any",
   "icons": [
     {
       "src": "https://raw.githubusercontent.com/manik1312006/8787/refs/heads/main/LOGO.webp",
       "sizes": "192x192",
-      "type": "image/webp"
+      "type": "image/webp",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://raw.githubusercontent.com/manik1312006/8787/refs/heads/main/LOGO.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any maskable"
     }
-  ]
+  ],
+  "shortcuts": [
+    {
+      "name": "Search Movies",
+      "url": "/?type=movies",
+      "description": "Search through movies collection"
+    },
+    {
+      "name": "Search Series",
+      "url": "/?type=series",
+      "description": "Browse TV series collection"
+    }
+  ],
+  "categories": ["entertainment", "streaming"],
+  "screenshots": [
+    {
+      "src": "https://raw.githubusercontent.com/manik1312006/8787/refs/heads/main/LOGO.webp",
+      "sizes": "1920x1080",
+      "type": "image/webp",
+      "form_factor": "wide"
+    }
+  ],
+  "prefer_related_applications": false
 }

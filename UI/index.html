@@ -13,10 +13,21 @@
     <meta property="og:url" content="https://8787.netlify.app/UI/">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="canonical" href="https://8787.netlify.app/UI/">
-    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="8787">
+    <link rel="apple-touch-startup-image" href="https://raw.githubusercontent.com/manik1312006/8787/refs/heads/main/LOGO.webp">
+    <!-- Add PWA splash screens for different devices -->
+    <link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px)" href="https://raw.githubusercontent.com/manik1312006/8787/refs/heads/main/LOGO.webp">
+    <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px)" href="https://raw.githubusercontent.com/manik1312006/8787/refs/heads/main/LOGO.webp">
+    <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px)" href="https://raw.githubusercontent.com/manik1312006/8787/refs/heads/main/LOGO.webp">
     <title>8787 - Watch And Download Movies & Series Online</title>
     <link rel="icon" href="https://raw.githubusercontent.com/manik1312006/8787/refs/heads/main/LOGO.webp" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4f9cff">
+    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/manik1312006/8787/refs/heads/main/LOGO.webp">
+    <meta name="mobile-web-app-capable" content="yes">
     <script type="application/ld+json">
     {
       "@type": "WebApplication",
@@ -52,6 +63,26 @@
         <span id="currentPage">Page 1</span>
         <button id="nextPage">Next</button>
     </div>
+    <div class="popup-overlay"></div>
+    <div class="popup" id="linkPopup">
+        <div class="popup-buttons">
+            <button class="popup-button copy-btn" id="copyLink">Copy Link</button>
+            <button class="popup-button download-btn" id="downloadFile">Download</button>
+        </div>
+    </div>
     <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.error('ServiceWorker registration failed:', error);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>
