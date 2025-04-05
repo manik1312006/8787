@@ -1,5 +1,5 @@
 f = input("Enter File Name(Without Extention): ")
-with open(f"{f}.m3u8", "w") as file:
+with open(f"M3U8/{f}.m3u8", "w") as file:
     file.write(f"#EXTM3U{"\n"}")
 while True:
     Title = input("Enter Title(Write Done if done.): ")
