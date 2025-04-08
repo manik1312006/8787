@@ -5,7 +5,7 @@ while True:
     Title = input("Enter Title(Write Done if done.): ")
     if Title.lower() != "done":
         Link = input("Enter Link: ")
-        with open(f"{f}.m3u8", "a") as file:
+        with open(f"M3U8/{f}.m3u8", "a") as file:
             file.write(f"#EXTINF:-1, {Title}{"\n"}")
             file.write(f"{Link}{"\n"}")
     else:
